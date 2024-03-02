@@ -14,11 +14,25 @@ import { formatPrice } from '@/lib/utils'
 import Link from 'next/link'
 import { buttonVariants } from './ui/button'
 import Image from 'next/image'
+import { useCart } from '@/hooks/use-cart'
+import { ScrollArea } from '@radix-ui/react-scroll-area'
+import CartItem from './CartItem'
+import { useEffect, useState } from 'react'
 
 
-const Card = () => {
+const Cart = () => {
+  const { items } = useCart()
+  const itemCount = items.length
 
-  const itemCount = 0
+  const [isMouted, setIsMouted] = useState<boolean>(false)
+
+  useEffect(() => {
+    setIsMouted(true)
+  }, [])
+
+  const cartTotal = items.reduce(
+    (total, { product }) => total + product.price,
+    0)
 
   const fee = 1
 
@@ -30,20 +44,23 @@ const Card = () => {
           className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
         />
         <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-          0
+          {isMouted ? itemCount : 0}
         </span>
       </SheetTrigger>
       <SheetContent className="flex w-full flex-col pr-0 sm:max-w-lg">
         <SheetHeader className="space-y-2.5 pr-6">
           <SheetTitle>
-            Carrito 0
+            Carrito ({itemCount})
           </SheetTitle>
         </SheetHeader>
         {itemCount > 0 ? (
           <>
             <div className="flex w-full flex-col pr-6">
-              {/*TODO. card logic */}
-              cart items
+              <ScrollArea>
+              {items.map(({product}) => (
+                <CartItem product={product} key={product.id}/>
+              ))}
+              </ScrollArea>
             </div>
             <div className='space-y-4 pr-6'>
               <Separator />
@@ -69,24 +86,25 @@ const Card = () => {
                     Total
                   </span>
                   <span>
-                    {formatPrice(fee)}
+                    {formatPrice(cartTotal + fee)}
                   </span>
                 </div>
               </div>
 
               <SheetFooter>
                 <SheetTrigger asChild>
-                  <Link href="/card" className={buttonVariants({
+                  <Link href="/cart" className={buttonVariants({
                     className: "w-full",
                   })}>
-                    Continue to Checkout
+                    Método de Pago
                   </Link>
                 </SheetTrigger>
               </SheetFooter>
             </div>
           </>
         ) : (
-          <div className="flex h-full flex-col items-center justify-center space-y-1">            <div 
+          <div className="flex h-full flex-col items-center justify-center space-y-1">
+            <div 
               arial-hidden="True" 
               className='relative mb-5 h-52 w-60 text-muted-foreground'>
               <Image 
@@ -113,4 +131,4 @@ const Card = () => {
   )
 }
 
-export default Card
+export default Cart

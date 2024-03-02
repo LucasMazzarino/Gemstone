@@ -36,7 +36,7 @@ export default function Home() {
       </h1>
       <p className="mt-6 text-lg max-w-prose text-muted-foreground">
         Tienda online de Joyas de la mejor calidad en Uruguay.
-        Te intersa ser revendedor? Contactanos aqui --aca va el link--
+        Te interesa ser revendedor? Contactados aquí --aca va el link--
       </p>
       <div className="flex flex-col sm:flex-row gap-4 mt-6">
         <Link href='/products' className={buttonVariants()}>Navegar</Link>

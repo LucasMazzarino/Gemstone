@@ -1,14 +1,19 @@
 import { PRODUCT_CATEGORIES } from "../../config";
 import { CollectionConfig } from "payload/types";
+import { Product } from "../../payload-type";
+import { BeforeChangeHook } from "payload/dist/collections/config/types";
+
+// const addUser: BeforeChangeHook<Product> = async ({req, data}) => {
+//   const user = req.user
+//   return {...data, user: user.id}
+// }
 
 export const Products: CollectionConfig = {
   slug: "products",
   admin: {
     useAsTitle: "name"
   },
-  access: {
-
-  },
+  access: {},
   fields: [
     {
       name: 'user',
@@ -41,7 +46,7 @@ export const Products: CollectionConfig = {
     },
     {
       name: 'category',
-      label: 'Categoria',
+      label: 'Categoría',
       type: 'select',
       options: PRODUCT_CATEGORIES.map(
         ({ label, value }) => ({ label, value })
