@@ -74,11 +74,11 @@ export const paymentRouter = router({
         .create({
           body:{
             items: lineItems,
-            notification_url:"https://1fb8-2800-a4-1afa-9200-946b-d310-ea19-543.ngrok-free.app/payment",
+            notification_url:`${process.env.NEXT_PUBLIC_SERVER_URL}/payment`,
             back_urls: {
-              success: `${process.env.NEXT_PUBLIC_SERVER_URL}/thank-you?orderId=${order.id}`,
+              success:`${process.env.NEXT_PUBLIC_SERVER_URL}/thank-you?orderId=${order.id}`,
               failure:`${process.env.NEXT_PUBLIC_SERVER_URL}/cart`,
-              pending: "https://www.crunchyroll.com/es-es/watch/G9DUE57Z2/phantoms-of-the-dead",
+              pending:`${process.env.NEXT_PUBLIC_SERVER_URL}/cart`,
             },
             metadata: {
               userId: user.id,
@@ -86,8 +86,8 @@ export const paymentRouter = router({
             },
           },
         });  
-        console.log(preference.sandbox_init_point?.toString())
-        return {url: preference.sandbox_init_point?.toString()}
+        console.log(preference.init_point?.toString())
+        return {url: preference.init_point?.toString()}
       } catch(error) {
         return {url: null}
       }

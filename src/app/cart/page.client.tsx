@@ -220,8 +220,8 @@ const CartPage = ({ user }: { user: User | null }) => {
 
             <div className='flex mt-6 justify-start items-center sm:flex-row flex-col gap-x-8'>
               <MercadoPagoButton />
-              <CashButton />
-              <Button className='mt-3 w-full sm:w-1/3'>Depósito</Button>
+              <CashButton buttonName='Efectivo'/>
+              <CashButton buttonName='Deposito'/>
             </div>
           </section>
         </div>

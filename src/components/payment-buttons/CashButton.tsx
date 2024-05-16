@@ -6,7 +6,11 @@ import { useRouter } from 'next/navigation'
 import { trpc } from '@/trpc/client'
 import { Loader2} from 'lucide-react'
 
-const MercadoPagoButton = () => {
+interface CashButtonProps {
+  buttonName: string;
+}
+
+const CashButton = ({ buttonName }: CashButtonProps) => {
   const { items } = useCart()
   const router = useRouter()
 
@@ -37,12 +41,12 @@ const MercadoPagoButton = () => {
                 {isLoading ? (
                   <Loader2 className='w-4 h-4 animate-spin mr-1.5' />
                 ) : null}
-                Efectivo
+                {buttonName}
               </Button>
     );
 };
 
-export default MercadoPagoButton;
+export default CashButton;
         
 
 
