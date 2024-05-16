@@ -10,6 +10,10 @@ const nextConfig = {
 				protocol: "https",
 				hostname: "gemstoneuruguay-production.up.railway.app",
 			},
+			{
+				protocol: "https",
+				hostname: "gemstonuruguay.com",
+			},
 		],
   },
   logging: {
