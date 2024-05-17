@@ -86,7 +86,6 @@ export const paymentRouter = router({
             },
           },
         });  
-        console.log(preference.init_point?.toString())
         return {url: preference.init_point?.toString()}
       } catch(error) {
         return {url: null}

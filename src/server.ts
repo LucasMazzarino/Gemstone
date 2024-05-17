@@ -1,4 +1,5 @@
 import express from "express"
+import { PayloadRequest } from 'payload/types'
 import { getPayloadClient } from "./get-payload"
 import { nextApp, nextHandler } from "./next-utils"
 import * as trpcExpress from "@trpc/server/adapters/express"
@@ -6,6 +7,7 @@ import { appRouter } from "./trpc"
 import { inferAsyncReturnType } from "@trpc/server"
 import nextBuild from "next/dist/build"
 import path from 'path'
+import { parse } from 'url'
 
 
 
@@ -54,6 +56,19 @@ const start = async () => {
   const cartRouter = express.Router()
 
   cartRouter.use(payload.authenticate)
+
+  cartRouter.get('/', (req, res) => {
+    const request = req as PayloadRequest
+
+    if (!request.user)
+      return res.redirect('/sign-in?origin=cart')
+
+    const parsedUrl = parse(req.url, true)
+    const { query } = parsedUrl
+
+    return nextApp.render(req, res, '/cart', query)
+  })
+
 
   app.use('/cart', cartRouter)
   app.use(
