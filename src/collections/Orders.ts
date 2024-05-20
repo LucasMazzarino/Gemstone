@@ -46,15 +46,8 @@ export const Orders: CollectionConfig = {
       required: true,
     },
     {
-      name: "products",
-      type: "relationship",
-      relationTo: "products",
-      required: true,
-      hasMany: true,
-    },
-    {
-      name: 'quantity',
-      label: 'Cantidad',
+      name: 'items',
+      label: 'Items',
       type: 'array',
       fields: [
         {

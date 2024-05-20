@@ -22,7 +22,7 @@ const Footer = () => {
             <div className='pb-8 pt-8'>
               <div className='flex justify-center mt-8'>
               <Link href='/'>
-                  <Image src="/thumnail.png" alt="trumnail" width={200} height={200}/>
+                  <Image src="/thumnail.png" alt="thumnail" width={200} height={200}/>
                 </Link>
               </div>
             </div>

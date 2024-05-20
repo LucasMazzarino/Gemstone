@@ -178,7 +178,6 @@ export const ReceiptEmail = ({
           <Hr style={productPriceLineBottom} />
 
           <Text style={footerLinksWrapper}>
-            <Link href='#'>Account Settings</Link> •{' '}
             <Link href='#'>Términos de uso</Link> •{' '}
             <Link href='#'>Política de privacidad</Link>
           </Text>

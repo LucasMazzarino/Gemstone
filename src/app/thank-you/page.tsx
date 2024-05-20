@@ -50,18 +50,14 @@ const ThankYouPage = async ({
     )
   }
 
-  const products = order.products as Product[]
+  const items = order.items.map(item => ({
+    ...item,
+    product: item.product as Product
+  }))
 
-  const orderTotal = user?.customerType === 'Wholesale' ?
-  products.reduce((total, product) => {
-    return total + product.wholesalePrice
-  }, 0
-  )
-  :
-  products.reduce((total, product) => {
-    return total + product.price
-  }, 0
-  )
+   const orderTotal = user?.customerType === 'Wholesale' 
+    ? items.reduce((total, item) => total + (item.product.wholesalePrice || 0) * (item.quantity || 0), 0)
+    : items.reduce((total, item) => total + (item.product.price || 0) * (item.quantity || 0), 0)
 
   return (
     <main className='relative lg:min-h-full'>
@@ -85,9 +81,9 @@ const ThankYouPage = async ({
             </h1>
             {order._isPaid ? (
               <p className='mt-2 text-base text-muted-foreground'>
-                Su pedido fue procesado y confirmado, los Productos
-                serán enviados a enviados  su dirección y nos pondremos
-                en contacto con usted via WhatsApp o Correo
+                Su pedido fue procesado y confirmado, los productos
+                serán enviados a su dirección y nos pondremos
+                en contacto con usted via WhatsApp o Correo {' '}
                 {typeof order.user !== 'string' ? (
                   <span className='font-medium text-gray-900'>
                     {order.user.email}
@@ -98,7 +94,7 @@ const ThankYouPage = async ({
             ) : (
               <p className='mt-2 text-base text-muted-foreground'>
                 Apreciamos su pedido y estamos
-                tramitándolo actualmente. Así que agárrate fuerte y
+                tramitándolo actualmente.
                 ¡Te enviaremos la confirmación muy pronto!
               </p>
             )}
@@ -112,14 +108,13 @@ const ThankYouPage = async ({
               </div>
 
               <ul className='mt-6 divide-y divide-gray-200 border-t border-gray-200 text-sm font-medium text-muted-foreground'>
-                {(order.products as Product[]).map(
-                  (product) => {
-                    const label = PRODUCT_CATEGORIES.find(
-                      ({ value }) =>
-                        value === product.category
-                    )?.label
+              {items.map(({ product, quantity }) => {
+                  const label = PRODUCT_CATEGORIES.find(
+                    ({ value }) =>
+                      value === product.category
+                  )?.label
 
-                    const { image } = product.images[0]
+                  const { image } = product.images[0]
 
                     return (
                       <li
@@ -144,21 +139,37 @@ const ThankYouPage = async ({
                             </h3>
 
                             <p className='my-1'>
-                              Category: {label}
+                              Categoría: {label}
                             </p>
                           </div>
                         </div>
                         {
                         user?.customerType === 'Wholesale' ? (
-                          <p className='flex-none font-medium text-gray-900'>
+                          <div className='flex flex-col text-end'>
+                          <span className='flex-none font-medium text-gray-900'>
                             {formatPrice(product.wholesalePrice)}
-                          </p>
+                          </span>
+                          <span className='flex font-medium text-muted-foreground ml-auto pr-2'>
+                            cantidad: {quantity}
+                          </span>
+                          <span className='flex font-medium text-muted-foreground ml-auto pr-2'>
+                            subtotal: {product.wholesalePrice * quantity!}
+                          </span>
+                        </div>
                           )
                           :
                           (
-                          <p className='flex-none font-medium text-gray-900'>
-                            {formatPrice(product.price)}
-                          </p>
+                          <div className='flex flex-col'>
+                            <span className='flex-none font-medium text-gray-900'>
+                              {formatPrice(product.price)}
+                            </span>
+                            <p className='flex font-medium text-muted-foreground ml-auto pr-5'>
+                              cantidad: {quantity}
+                            </p>
+                            <span className='flex font-medium text-muted-foreground ml-auto pr-2'>
+                              subtotal: {product.price * quantity!}
+                            </span>
+                          </div>
                           )
                         }
                       </li>
@@ -167,21 +178,12 @@ const ThankYouPage = async ({
                 )}
               </ul>
 
-              <div className='space-y-6 border-t border-gray-200 pt-6 text-sm font-medium text-muted-foreground'>
-                <div className='flex justify-between'>
-                  <p>Subtotal</p>
-                  <p className='text-gray-900'>
-                    {formatPrice(orderTotal)}
-                  </p>
-                </div>
-
                 <div className='flex items-center justify-between border-t border-gray-200 pt-6 text-gray-900'>
                   <p className='text-base'>Total</p>
                   <p className='text-base'>
-                    {formatPrice(orderTotal + 1)}
+                    {formatPrice(orderTotal)}
                   </p>
                 </div>
-              </div>
 
               <PaymentStatus
                 isPaid={order._isPaid}

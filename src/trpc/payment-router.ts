@@ -48,9 +48,8 @@ export const paymentRouter = router({
         collection: 'orders',
         data: {
           _isPaid: false,
-          products: products.map((prod) => prod.id),
           user: user.id,
-          quantity: orderItems,
+          items: orderItems,
         },
       })
       
@@ -74,7 +73,7 @@ export const paymentRouter = router({
         .create({
           body:{
             items: lineItems,
-            notification_url:`${process.env.NEXT_PUBLIC_SERVER_URL}/payment`,
+            notification_url:`{${process.env.NEXT_PUBLIC_SERVER_URL}}/payment`,
             back_urls: {
               success:`${process.env.NEXT_PUBLIC_SERVER_URL}/thank-you?orderId=${order.id}`,
               failure:`${process.env.NEXT_PUBLIC_SERVER_URL}/cart`,
@@ -86,12 +85,11 @@ export const paymentRouter = router({
             },
           },
         });  
-        return {url: preference.init_point?.toString()}
+        return {url: preference.sandbox_init_point?.toString()}
       } catch(error) {
         return {url: null}
       }
 
-      
     }),
     pollOrderStatus: privateProcedure
     .input(z.object({ orderId: z.string() }))
@@ -156,9 +154,8 @@ export const paymentRouter = router({
       collection: 'orders',
       data: {
         _isPaid: false,
-        products: products.map((prod) => prod.id),
         user: user.id,
-        quantity: orderItems,
+        items: orderItems,
       },
     })
 

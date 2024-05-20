@@ -55,6 +55,8 @@ export interface User {
   resetPasswordExpiration?: string | null;
   salt?: string | null;
   hash?: string | null;
+  _verified?: boolean | null;
+  _verificationToken?: string | null;
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password: string | null;
@@ -118,8 +120,7 @@ export interface Order {
   id: string;
   _isPaid: boolean;
   user: string | User;
-  products: (string | Product)[];
-  quantity: {
+  items: {
     product: string | Product;
     price?: number | null;
     quantity?: number | null;

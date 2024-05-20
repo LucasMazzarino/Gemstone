@@ -1,4 +1,5 @@
 import { Access, CollectionConfig } from 'payload/types'
+import { PrimaryActionEmailHtml } from '../components/emails/PrimaryActionsEmail'
 
 const adminsAndUser: Access = ({ req: { user } }) => {
   if (user.role === 'admin') return true
@@ -12,7 +13,17 @@ const adminsAndUser: Access = ({ req: { user } }) => {
 
 export const Users: CollectionConfig = {
   slug: "users",
-  auth: true,
+  auth: {
+    verify: {
+      generateEmailHTML: ({ token }) => {
+        return PrimaryActionEmailHtml({
+          actionLabel: "verifica tu cuenta",
+          buttonText: "Verificar cuenta",
+          href: `${process.env.NEXT_PUBLIC_SERVER_URL}/verify?token=${token}`
+        })
+      },
+    },
+  },
   access: {
     read: adminsAndUser,
     create: () => true,
@@ -21,8 +32,10 @@ export const Users: CollectionConfig = {
   },
   admin: {
     hidden: ({ user }) => user.role !== 'admin',
-    defaultColumns: ['id'],
+    useAsTitle: 'firstName',
+    defaultColumns: ['firstName','lastName', 'email'],
   },
+  defaultSort: 'lastName',
   fields: [
     {
       name: "role",
@@ -51,7 +64,7 @@ export const Users: CollectionConfig = {
     },
     {
       name: "phoneNumber",
-      label: "Phone Number",
+      label: "Numero de teléfono",
       type: "text",
       required: true,
     },

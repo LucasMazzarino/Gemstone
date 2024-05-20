@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest} from "next/server";
 import { MercadoPagoConfig, Payment } from "mercadopago";
 import { getPayloadClient } from "@/get-payload";
 import { Resend } from "resend";
@@ -89,10 +89,36 @@ export async function POST(request: NextRequest) {
         },
       });
 
-      return Response.json({ success: true });
+      const items = order.items.map(item => ({
+        ...item,
+        product: item.product as Product
+      }))
+
+      try {
+        const data = await resend.emails.send({
+          from: 'GemstoneUruguay <servicio@gemstonuruguay.com>',
+          to: [user.email],
+          subject:
+            'Thanks for your order! This is your receipt.',
+          html: ReceiptEmailHtml({
+            date: new Date(),
+            email: user.email,
+            orderId: paymentData.metadata.order_id,
+            products: items.map(item => ({
+              ...item.product,
+              quantity: item.quantity,
+            })),
+          }),
+        });
+        return Response.json({ data })
+      } catch (error) {
+        return Response.json({ success: false, errorMessage: "Error inesperado" });
+      }
+    
     }
   } catch (error) {
     console.error("Error inesperado:", error);
     return Response.json({ success: false, errorMessage: "Error inesperado" });
   }
+  return Response.json({ success: true });
 }

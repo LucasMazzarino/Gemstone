@@ -5,15 +5,15 @@ import {
 import { publicProcedure, router} from "./trpc";
 import { getPayloadClient } from "../get-payload";
 import { TRPCError } from "@trpc/server";
+import { z } from 'zod'
 
 export const authRouter = router({
   createPayloadUser: publicProcedure
   .input(SignUpAuthCredentialsValidator)
   .mutation( async ({input}) => {
     const {email, password, firstName, lastName, address, phoneNumber, department} = input
+    
     const payload = await getPayloadClient()
-
-    //comprobar si el usuario ya existe
 
     const{docs: users} = await payload.find({
       collection:"users",
@@ -64,5 +64,23 @@ export const authRouter = router({
     } catch (err) {
       throw new TRPCError({ code:'UNAUTHORIZED' })
     }
+  }),
+
+  verifyEmail: publicProcedure
+  .input(z.object({ token: z.string() }))
+  .query(async ({ input }) => {
+    const { token } = input
+
+    const payload = await getPayloadClient()
+
+    const isVerified = await payload.verifyEmail({
+      collection: 'users',
+      token,
+    })
+
+    if (!isVerified)
+      throw new TRPCError({ code: 'UNAUTHORIZED' })
+
+    return { success: true }
   }),
 })
