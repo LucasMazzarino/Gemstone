@@ -35,7 +35,7 @@ export const EmailTemplate = ({
         <Container style={container}>
         <Section style={logoContainer}>
             <Img
-              src='https://gemstonuruguay.com/thumnail.png'
+              src='https://cdn.gemstonuruguay.com/thumnail.png'
               width='300'
               height='300'
               alt='Gem'
@@ -54,7 +54,7 @@ export const EmailTemplate = ({
             </Button>
           </Section>
           <Text style={paragraph}>
-            Te deseamos lo mejor
+            Te deseamos lo mejor.
             <br />
             El Equipo de Gemstone
           </Text>
@@ -81,7 +81,6 @@ const main = {
 const container = {
   margin: '0 auto',
   padding: '20px 0 48px',
-  textAlign: 'center' as const,
 }
 
 const logoContainer = {

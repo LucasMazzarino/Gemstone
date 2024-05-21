@@ -103,6 +103,7 @@ export async function POST(request: NextRequest) {
           html: ReceiptEmailHtml({
             date: new Date(),
             email: user.email,
+            userType: user.customerType!,
             orderId: paymentData.metadata.order_id,
             products: items.map(item => ({
               ...item.product,

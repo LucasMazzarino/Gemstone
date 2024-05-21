@@ -24,6 +24,7 @@ import { format } from 'date-fns'
 interface ReceiptEmailProps {
   email: string
   date: Date
+  userType: string
   orderId: string
   products: Product[]
 }
@@ -31,12 +32,23 @@ interface ReceiptEmailProps {
 export const ReceiptEmail = ({
   email,
   date,
+  userType,
   orderId,
   products,
 }: ReceiptEmailProps) => {
-  const total =
-    products.reduce((acc, curr) => acc + curr.price, 0) + 1
+  const total = userType === 'Wholesale' 
+    ? products.reduce((acc, curr) => acc + curr.wholesalePrice * curr.quantity!, 0)
+    : products.reduce((acc, curr) => acc + curr.price * curr.quantity!, 0)
+  
 
+  const getAbsoluteUrl = (url: string) => {
+    // Asegúrate de que la URL es absoluta
+    if (url.startsWith('http')) {
+      return url;
+    }
+    return `https://${url}`;
+  };
+   
   return (
     <Html>
       <Head />
@@ -47,7 +59,7 @@ export const ReceiptEmail = ({
           <Section>
             <Column>
               <Img
-                src={`${process.env.NEXT_PUBLIC_SERVER_URL}`}
+                src='https://cdn.gemstonuruguay.com/thumnail.png'
                 width='100'
                 height='100'
                 alt='Gemstone'
@@ -98,11 +110,11 @@ export const ReceiptEmail = ({
             <Text style={productsTitle}>Suma de la orden</Text>
           </Section>
           {products.map((product) => {
-            const { image } = product.images[0]
+            // const { image } = product.images[0]
 
             return (
               <Section key={product.id}>
-                <Column style={{ width: '64px' }}>
+                {/* <Column style={{ width: '64px' }}>
                   {typeof image !== 'string' &&
                   image.url ? (
                     <Img
@@ -113,7 +125,7 @@ export const ReceiptEmail = ({
                       style={productIcon}
                     />
                   ) : null}
-                </Column>
+                </Column> */}
                 <Column style={{ paddingLeft: '22px' }}>
                   <Text style={productTitle}>
                     {product.name}
@@ -134,34 +146,17 @@ export const ReceiptEmail = ({
                   style={productPriceWrapper}
                   align='right'>
                   <Text style={productPrice}>
-                    {formatPrice(product.price)}
+                    {userType === 'Wholesale' ?
+                    formatPrice(product.wholesalePrice)
+                  : formatPrice(product.price)}
+                  </Text>
+                  <Text style={productDescription}>
+                    cantidades: {product.quantity}
                   </Text>
                 </Column>
               </Section>
             )
           })}
-
-          <Section>
-            <Column style={{ width: '64px' }}></Column>
-            <Column
-              style={{
-                paddingLeft: '40px',
-                paddingTop: 20,
-              }}>
-              <Text style={productTitle}>
-                Envío
-              </Text>
-            </Column>
-
-            <Column
-              style={productPriceWrapper}
-              align='right'>
-              <Text style={productPrice}>
-                {formatPrice(1)}
-              </Text>
-            </Column>
-          </Section>
-
           <Hr style={productPriceLine} />
           <Section align='right'>
             <Column style={tableCell} align='right'>
