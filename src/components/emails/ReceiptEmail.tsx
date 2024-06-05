@@ -42,7 +42,6 @@ export const ReceiptEmail = ({
   
 
   const getAbsoluteUrl = (url: string) => {
-    // Asegúrate de que la URL es absoluta
     if (url.startsWith('http')) {
       return url;
     }

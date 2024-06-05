@@ -22,7 +22,7 @@ const VerifyEmailPage = ({ searchParams }: PageProps) => {
           <div className='flex h-full flex-col items-center justify-center space-y-1'>
             <div className='relative mb-4 h-60 w-60 text-muted-foreground'>
               <Image
-                src='/gemstone-email.png'
+                src='https://cdn.gemstonuruguay.com/gemstone-email.png'
                 fill
                 alt='gemstone email'
               />

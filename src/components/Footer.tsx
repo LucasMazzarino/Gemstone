@@ -22,7 +22,7 @@ const Footer = () => {
             <div className='pb-8 pt-8'>
               <div className='flex justify-center mt-8'>
               <Link href='/'>
-                  <Image src="/thumnail.png" alt="thumnail" width={200} height={200}/>
+                  <Image src="https://cdn.gemstonuruguay.com/thumnail.png" alt="thumnail" width={200} height={200}/>
                 </Link>
               </div>
             </div>
@@ -68,14 +68,11 @@ const Footer = () => {
               <LogoIg/>
               <LogoWpp/>
               <Link
-                href='#'
+                href='/Terminos-y-condiciones.pdf'
+                target="_blank"
+                rel="noopener noreferrer"
                 className='text-sm text-muted-foreground hover:text-gray-600'>
-                Términos
-              </Link>
-              <Link
-                href='#'
-                className='text-sm text-muted-foreground hover:text-gray-600'>
-                Política de Privacidad
+                Términos y Condiciones de uso
               </Link>
             </div>
           </div>

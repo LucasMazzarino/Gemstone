@@ -1,4 +1,4 @@
-import { Package, DollarSign,ShoppingCart } from "lucide-react";
+import { Package, DollarSign,ShieldCheck } from "lucide-react";
 import React from "react";
 
 export const PRODUCT_CATEGORIES = [
@@ -155,17 +155,17 @@ export const ICONS_HOME = [
   {
     name:"Envíos a todo el País",
     Icon: Package,
-    description : "Envíos a todo Uruguay"
+    description : "Entregamos tus pedidos de manera rápida y eficiente, para que puedas disfrutar de tus productos lo antes posible."
   },
   {
-    name:"Precios mayoristas",
-    Icon: ShoppingCart,
-    description : "Con la compra de varios artículos opten descuentos"
+    name:"Seguridad garantizada",
+    Icon:ShieldCheck,
+    description : "Protegemos tus datos y transacciones con los más altos estándares de seguridad, para que puedas comprar con tranquilidad."
   },
   {
     name:"Puedes convertirte en Revendedor",
     Icon: DollarSign,
-    description : "Si te interesa la venta de joyas contáctenos para obtened mas información "
+    description : "Accede a precios mayorista con grandes descuentos, ahorrando dinero en tus compras."
   },
 ]
 

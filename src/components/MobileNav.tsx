@@ -51,14 +51,20 @@ const MobileNav = ({ user }: { user: User | null }) => {
             </div>
 
             <div className='space-y-6 border-t border-gray-200 px-4 py-6'>
-              <div className='pb-4 border-b-2'>
+              <div className='pb-4 border-b-2 space-y-2'>
                 <Link
                   onClick={() => closeOnCurrent('/product')}
-                  href='/sign-in'
+                  href='/product'
                   className='block p-2 font-medium text-gray-900 text-sm'>
                   Productos
                 </Link>
-                </div>
+                <Link
+                  onClick={() => closeOnCurrent('/product')}
+                  href='/order'
+                  className='block p-2 font-medium text-gray-900 text-sm'>
+                  Tus ordenes
+                </Link>
+                </div>                     
               <div className='flow-root'>
               {user ? (
                     <UserAccountNav user={user} />
@@ -68,7 +74,7 @@ const MobileNav = ({ user }: { user: User | null }) => {
                       onClick={() => closeOnCurrent('/sign-in')}
                       href='/sign-in'
                       className='block p-2 font-medium text-gray-900'>
-                      Inicia Sección 
+                      Inicia sesión 
                     </Link>
                     <div className='flow-root'>
                       <Link
@@ -80,21 +86,6 @@ const MobileNav = ({ user }: { user: User | null }) => {
                     </div>
                   </div>
                   )}
-                {/* <Link
-                  onClick={() => closeOnCurrent('/sign-in')}
-                  href='/sign-in'
-                  className='-m-2 block p-2 font-medium text-gray-900'>
-                  Inicia Sección 
-                </Link>
-
-              </div>
-              <div className='flow-root'>
-                <Link
-                  onClick={() => closeOnCurrent('/sign-up')}
-                  href='/sign-up'
-                  className='-m-2 block p-2 font-medium text-gray-900'>
-                  Registrare
-                </Link> */}
               </div>
             </div>
           </div>

@@ -16,11 +16,11 @@ export const useAuth = () => {
       })
 
       if(!res.ok) throw new Error()
-      toast.success('Sección cerrada con éxito')
+      toast.success('sesión cerrada con éxito')
     router.push('/sign-in')
     router.refresh()
     } catch (error) {
-      toast.error('Error al cerrar sección, intente nuevamente')
+      toast.error('Error al cerrar sesión, intente nuevamente')
     }
   }
 

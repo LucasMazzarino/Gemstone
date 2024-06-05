@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { cn } from '@/lib/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ArrowRight, Loader2 } from 'lucide-react'
+import { ArrowRight ,Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import {
@@ -76,7 +76,7 @@ const Page = () => {
           <div className='flex flex-col items-center space-y-2 text-center'>
             <Image src="/favicon.ico" alt="logo" width={100} height={100}/>
             <h1 className='text-2xl font-bold tracking-tight'>
-              Inicia sección en tu {' '}
+              Inicia sesión en tu {' '}
               cuenta
             </h1>
 
@@ -133,7 +133,7 @@ const Page = () => {
                   {isLoading && (
                     <Loader2 className='mr-2 h-4 w-4 animate-spin' />
                   )}
-                  Iniciar Sección
+                  Iniciar sesión
                 </Button>
               </div>
             </form>
@@ -145,29 +145,20 @@ const Page = () => {
                 <span className='w-full border-t' />
               </div>
               <div className='relative flex justify-center text-xs uppercase'>
-                <span className='bg-background px-2 text-muted-foreground'>
-                  O
-                </span>
               </div>
             </div>
-
-            {/* {isSeller ? (
-              <Button
-                onClick={continueAsBuyer}
-                variant='secondary'
-                disabled={isLoading}>
-                Continue as customer
-              </Button>
-            ) : (
-              <Button
-                onClick={continueAsSeller}
-                variant='secondary'
-                disabled={isLoading}>
-                Continue as seller
-              </Button>
-            )} */}
           </div>
         </div>
+        <Link 
+           className={buttonVariants({
+            variant: 'link',
+            className: 'gap-1.5',
+          })}
+          href='/sell/forgot'>
+            Olvidaste la contraseña? restablecerla Aquí
+          <ArrowRight className='h-4 w-4'/>
+          </Link>
+
       </div>
     </>
   )

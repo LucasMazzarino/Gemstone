@@ -29,13 +29,16 @@ const Navbar = async () => {
               </div>
               <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-start lg:space-x-6 lg:ml-6">
                 <Link href="/product" className={buttonVariants({ variant: "ghost" })}> Productos</Link>
-                {/* <NavItems /> */}
+                <Link href="/order" className={buttonVariants({ variant: "ghost" })}>Tus ordenes</Link>
               </div>
+            
+             
+              
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                   {user ? null : (
-                    <Link href="/sign-in" className={buttonVariants({ variant: "ghost" })}>Iniciar Sección</Link>
+                    <Link href="/sign-in" className={buttonVariants({ variant: "ghost" })}>Iniciar sesión</Link>
                   )}
 
                   {user ? null : (

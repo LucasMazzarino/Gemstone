@@ -100,8 +100,9 @@ const Cart = ({ user }: {user: User | null}) => {
               arial-hidden="True" 
               className='relative mb-5 h-52 w-60 text-muted-foreground'>
               <Image 
-                src="/empty-cart.png" 
+                src="https://cdn.gemstonuruguay.com/empty-cart.png" 
                 fill 
+                sizes="100vw"
                 alt="empty shopping" 
                 />
             </div>

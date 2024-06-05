@@ -31,11 +31,11 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    console.log(paymentData);
-    console.log(paymentData.metadata);
+    // console.log(paymentData);
+    // console.log(paymentData.metadata);
 
     if (!paymentData?.metadata || !paymentData.metadata.user_id || !paymentData.metadata.order_id) {
-      console.log("No se encontró metadata");
+      // console.log("No se encontró metadata");
       return Response.json({ success: false, errorMessage: "No se encontró metadata" });
     }
 
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
       const [user] = users;
 
       if (!user) {
-        console.log("No se encontró el usuario");
+        // console.log("No se encontró el usuario");
         return Response.json({ success: false, errorMessage: "No se encontró el usuario" });
       }
 
@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
       const [order] = orders;
 
       if (!order) {
-        console.log("No se encontró la orden");
+        // console.log("No se encontró la orden");
         return Response.json({ success: false, errorMessage: "No se encontró la orden" });
       }
 
@@ -99,7 +99,7 @@ export async function POST(request: NextRequest) {
           from: 'GemstoneUruguay <servicio@gemstonuruguay.com>',
           to: [user.email],
           subject:
-            'Thanks for your order! This is your receipt.',
+            'Muchas gracias por tu orden! aquí esta tu recibo',
           html: ReceiptEmailHtml({
             date: new Date(),
             email: user.email,

@@ -126,6 +126,7 @@ export interface Order {
     quantity?: number | null;
     id?: string | null;
   }[];
+  total?: number | null;
   updatedAt: string;
   createdAt: string;
 }

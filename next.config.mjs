@@ -18,6 +18,10 @@ const nextConfig = {
 				protocol: "https",
 				hostname: "gemstonuruguay.com",
 			},
+			{
+				protocol: "https",
+				hostname: "cdn.gemstonuruguay.com",
+			},
 		],
   },
   logging: {

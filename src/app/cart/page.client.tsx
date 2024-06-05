@@ -2,12 +2,12 @@
 
 import MercadoPagoButton from '@/components/payment-buttons/MercadoPagoButton'
 import MaxWidthWrapper from '@/components/MaxWidthWrapper'
+import * as Tooltip from '@radix-ui/react-tooltip';
 import { Button } from '@/components/ui/button'
 import { PRODUCT_CATEGORIES } from '@/config'
 import { useCart } from '@/hooks/use-cart'
 import { cn, formatPrice } from '@/lib/utils'
 import { User } from '@/payload-type'
-import { trpc } from '@/trpc/client'
 import { Check, Loader2, X, HelpCircle } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -55,8 +55,9 @@ const CartPage = ({ user }: { user: User | null }) => {
                 <div
                   aria-hidden
                   className="relative mb-4 h-40 w-40 text-muted-foreground">
-                  <Image src='/empty-cart.png'
+                  <Image src='https://cdn.gemstonuruguay.com/empty-cart.png'
                     fill
+                    sizes='100vw'
                     loading="eager"
                     alt="Carrito vació" />
                 </div>
@@ -188,25 +189,39 @@ const CartPage = ({ user }: { user: User | null }) => {
                 </p>
               </div>
 
-              <div className='flex items-center justify-between border-t border-gray-200 pt-4'>
-                <div className='flex items-center text-sm text-muted-foreground'>
+              <div className="flex items-center justify-between border-t border-gray-200 pt-4">
+                <div className="flex items-center text-sm text-muted-foreground">
                   <span>Envío</span>
                 </div>
-                <div className='text-sm font-medium text-gray-900 flex flex-col items-end group/item '>
+                <div className="text-sm font-medium text-gray-900 flex flex-col items-end">
                   {isMounted ? (
-                    <div className='flex'>Gratis
-                      <HelpCircle className='ml-1 ' color='blue' size={24} />
+                    <div className="flex items-center">
+                      Gratis
+                      <Tooltip.Provider>
+                        <Tooltip.Root>
+                          <Tooltip.Trigger asChild>
+                            <HelpCircle className="ml-1" color="blue" size={24} />
+                          </Tooltip.Trigger>
+                          <Tooltip.Content
+                            side="top"
+                            align="center"
+                            className="bg-gray-900 text-white px-2 py-1 rounded shadow-md"
+                          >
+                            Unicamente se cobrará el retiro de agencia
+                            <Tooltip.Arrow className="fill-gray-900" />
+                          </Tooltip.Content>
+                        </Tooltip.Root>
+                      </Tooltip.Provider>
                     </div>
                   ) : (
-                    <Loader2 className='h-4 w-4 animate-spin text-muted-foreground' />
+                    <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
                   )}
-                  <span className='group/edit invisible hover:bg-slate-200 group-hover/item:visible flex flex-col'>Unicamente se cobrara el retiro de agencia</span>
                 </div>
               </div>
 
               <div className='flex items-center justify-between border-t border-gray-200 pt-4'>
                 <div className='text-base font-medium text-gray-900'>
-                  Order Total
+                  Total de la orden
                 </div>
                 <div className='text-base font-medium text-gray-900'>
                   {isMounted ? (

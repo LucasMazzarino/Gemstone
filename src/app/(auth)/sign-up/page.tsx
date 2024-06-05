@@ -32,7 +32,7 @@ const {mutate, isLoading} =
   trpc.auth.createPayloadUser.useMutation({
     onError: (err) => {
       if(err.data?.code === "CONFLICT") {
-        toast.error("This email is already in use.")
+        toast.error("Este email ya esta en uso")
         return
       }
     
@@ -43,7 +43,7 @@ const {mutate, isLoading} =
       toast.error('Something went wrong')
     },
     onSuccess: ({sentoToEmail}) => {
-      toast.success(`verification email sent to ${sentoToEmail}.`)
+      toast.success(`Email de verificación enviado ${sentoToEmail}.`)
       router.push('/')
     }   
 })
@@ -97,7 +97,7 @@ const OPTIONS = [
               className: 'gap-1.5'
             })}
               href='/sign-in'>
-              Ya tienes una cuenta? Inicia sección aquí
+              Ya tienes una cuenta? Inicia sesión aquí
               <ArrowRight className='h-4 w-4' />
             </Link>
           </div>

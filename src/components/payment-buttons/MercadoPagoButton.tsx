@@ -10,8 +10,10 @@ const MercadoPagoButton = () => {
   const { items } = useCart()
   const router = useRouter()
 
-  const productIds = items.map(({ product }) => product.id)
-  const quantity = items.map(({ count }) => count)
+  const productsData = items.map(({ product, count }) => ({
+    productId: product.id,
+    quantity: count
+  }));
 
   const { mutate: createCheckoutSession, isLoading } =
   trpc.payment.createSession.useMutation({
@@ -31,7 +33,7 @@ const MercadoPagoButton = () => {
         <Button
                 disabled={items.length === 0 || isLoading}
                 onClick={() =>
-                  createCheckoutSession({ productIds, quantity})
+                  createCheckoutSession({ productsData })
                 }
                 className='mt-3 w-full sm:ml-3 sm:w-1/3'>
                 {isLoading ? (

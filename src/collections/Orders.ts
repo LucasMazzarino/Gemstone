@@ -15,6 +15,8 @@ export const Orders: CollectionConfig = {
   admin: {
     useAsTitle: "tus ordenes",
     description: "Suma de todas tus ordenes",
+    defaultColumns:['id','_isPaid', 'createdAt'],
+    hideAPIURL: true
   },
   access: {
     read: yourOwn,
@@ -25,24 +27,23 @@ export const Orders: CollectionConfig = {
   fields:[
     {
       name: "_isPaid",
+      label: "Pagado?",
       type: "checkbox", 
       access: {
         read: ({req}) => req.user.role === "admin",
-        create: () => false,
-        update: () => false,
-      },
-      admin: {
-        hidden: true,
       },
       required: true,
     },
     {
       name: "user",
+      label: "usuario",
       type: "relationship",
-      admin: {
-        hidden: true,
-      },
       relationTo: "users",
+      access: {
+        read: ({req}) => req.user.role === "admin",
+        create: () => false,
+        update: () => false, 
+      },
       required: true,
     },
     {
@@ -69,5 +70,11 @@ export const Orders: CollectionConfig = {
       ],
       required: true,
     },
+    {
+      name: 'total',
+      label: 'Total',
+      type: 'number',
+      min: 0,
+    }
   ],
 }

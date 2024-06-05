@@ -36,23 +36,22 @@ const VerifyEmail = ({ token }: VerifyEmailProps) => {
       <div className='flex h-full flex-col items-center justify-center mb-10'>
         <div className='relative mb-4 h-60 w-60 text-muted-foreground'>
           <Image
-            src='/gemstone-email.png'
-            width='600'
-            height='600'
+            src='https://cdn.gemstonuruguay.com/verify-completed.png'
+            width='1400'
+            height='1400'
             alt='email enviado'
           />
         </div>
-
-        <h3 className='font-semibold text-2xl'>
+        <h3 className='font-semibold text-2xl mt-4'>
           Todo Listo!
         </h3>
         <p className='text-muted-foreground text-center mt-1'>
           Gracias por verificar tu email.
         </p>
         <Link
-          className={buttonVariants({ className: 'mt-4' })}
+          className={buttonVariants({ className: 'mt-4'})}
           href='/sign-in'>
-          Iniciar sección
+          Iniciar sesión
         </Link>
       </div>
     )
