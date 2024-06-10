@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (paymentData.status === 'approved') {
-      console.log("Status aprobado");
+      // console.log("Status aprobado");
 
       const payload = await getPayloadClient();
 

@@ -97,7 +97,7 @@ export const paymentRouter = router({
         .create({
           body:{
             items: lineItems,
-            notification_url:`https://6704-2800-a4-1a15-bb00-d51a-651c-b571-45e1.ngrok-free.app/payment`,
+            notification_url:`${process.env.NEXT_PUBLIC_SERVER_URL}/payment`,
             back_urls: {
               success:`${process.env.NEXT_PUBLIC_SERVER_URL}/thank-you?orderId=${order.id}`,
               failure:`${process.env.NEXT_PUBLIC_SERVER_URL}/cart`,
@@ -152,7 +152,7 @@ export const paymentRouter = router({
     const { productsData } = input;
 
     if (productsData.length === 0) {
-      throw new TRPCError({ code: 'BAD_REQUEST' });
+      throw new TRPCError({ code: 'BAD_REQUEST', message: 'No products in the cart.' });
     }
 
     const resend = new Resend(process.env.RESEND_API_KEY)
@@ -170,26 +170,33 @@ export const paymentRouter = router({
     })
     
     let orderTotal = 0
+    const unavailableProductIds: string[] = [];
 
     const orderItems = productsData.map(({ productId, quantity }) => {
       const product = products.find(prod => prod.id === productId);
       if (!product) {
+        unavailableProductIds.push(productId);
         throw new TRPCError({ code: 'NOT_FOUND', message: `Product with id ${productId} not found` });
       }
-      
-      const unitPrice = user?.customerType === 'Wholesale'
-        ? product.wholesalePrice
-        : product.price;
+      else if (product.approvedForSale !== "approved") {
+        unavailableProductIds.push(productId);
+        throw new TRPCError({ code: 'BAD_REQUEST', message: `El producto ${product.name} ya no esta disponible, por favor retíralo del carrito para continuar con su pedido` });
+      }
+      else {
+        const unitPrice = user?.customerType === 'Wholesale'
+          ? product.wholesalePrice
+          : product.price;
 
-      const itemTotal = unitPrice * quantity;
-      orderTotal += itemTotal;
+        const itemTotal = unitPrice * quantity;
+        orderTotal += itemTotal;
 
-      return {
-        product: product.id,
-        quantity: quantity,
-        price: unitPrice * quantity,
-      };
-    });
+        return {
+          product: product.id,
+          quantity: quantity,
+          price: unitPrice * quantity,
+        };
+      }
+    }).filter(Boolean);
 
     const order = await payload.create({
       collection: 'orders',

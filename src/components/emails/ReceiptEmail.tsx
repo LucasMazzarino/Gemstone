@@ -103,6 +103,17 @@ export const ReceiptEmail = ({
                   {orderId}
                 </Link>
               </Column>
+              <Column style={informationTableColumn}>
+                <Text style={informationTableLabel}>
+                  Pago
+                </Text>
+                <Link
+                  style={{
+                    ...informationTableValue,
+                  }}>
+                  aprobado
+                </Link>
+              </Column>
             </Row>
           </Section>
           <Section style={productTitleTable}>
@@ -248,7 +259,7 @@ const informationTableLabel = {
 const informationTableValue = {
   fontSize: '12px',
   margin: '0',
-  padding: '0',
+  padding: '0 4px 0 0',
   lineHeight: 1.4,
 }
 
