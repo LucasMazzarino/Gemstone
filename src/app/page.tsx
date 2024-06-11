@@ -6,6 +6,7 @@ import { ICONS_HOME } from "../config/index"
 import { cookies } from "next/headers";
 import Link from "next/link";
 import Image from "next/image";
+import FilterProducts from "@/components/FilterProducts";
 
 
 const Home = async () => {
@@ -15,7 +16,7 @@ const Home = async () => {
 
   return (
   <>
-    <div className="relative py-40 mx-auto text-center flex flex-col items-center lg:py-10 max-w-full rounded-lg bg-cover bg-center bg-no-repeat">
+    <div className="relative py-36 mx-auto text-center flex flex-col items-center lg:py-4 max-w-full rounded-lg bg-cover bg-center bg-no-repeat">
       <div className="absolute inset-0 bg-slate-100 opacity-50 z-10 rounded-lg"></div>
       <Image 
         src="https://cdn.gemstonuruguay.com/baner.png" 
@@ -34,13 +35,13 @@ const Home = async () => {
         <span className="text-violet-700">de Joyas</span>
         .
       </h2>
-      <div className="relative z-20 flex flex-col sm:flex-row sm:pt-5 gap-6 mt-10">
-        <Link href="/product" className={buttonVariants()}>Navegar</Link>
+      <div className="relative z-20 flex flex-col sm:flex-row sm:pt-5 gap-6 mt-8 mb-4">
+        <Link href="/product" className={buttonVariants()}>Ver Productos</Link>
       </div>
     </div>
   <MaxWidthWrapper>
-    <ProductsReel query={{sort: "desc", limit: 5}} user={user} title="Nuevos Productos" href="/product" />
-  </MaxWidthWrapper>
+      <ProductsReel query={{sort: "desc", limit: 5}} user={user} title="Nuevos Productos" href="/product" />
+    </MaxWidthWrapper>
     <section className="border-t w-full py-12 md:py-24 lg:py-32 bg-gray-100">
       <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">   
           <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">Beneficios clave</h2>

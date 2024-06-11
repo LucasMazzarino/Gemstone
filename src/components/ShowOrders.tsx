@@ -1,4 +1,3 @@
-import { trpc } from '@/trpc/client'
 import { cn } from '@/lib/utils';
 import { Order, Product, User } from '@/payload-type'
 import Image from 'next/image'

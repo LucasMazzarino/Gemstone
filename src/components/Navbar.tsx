@@ -31,9 +31,6 @@ const Navbar = async () => {
                 <Link href="/product" className={buttonVariants({ variant: "ghost" })}> Productos</Link>
                 <Link href="/order" className={buttonVariants({ variant: "ghost" })}>Tus ordenes</Link>
               </div>
-            
-             
-              
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">

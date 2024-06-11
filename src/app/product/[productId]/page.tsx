@@ -5,7 +5,7 @@ import ProductsReel from '../../../components/ProductsReel'
 import { PRODUCT_CATEGORIES } from '@/config'
 import { getPayloadClient } from '@/get-payload'
 import { formatPrice } from '@/lib/utils'
-import { Check, Shield } from 'lucide-react'
+import { ShieldCheck, Truck } from 'lucide-react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getServerSideUser } from '@/lib/payload-utils'
@@ -124,12 +124,21 @@ const Page = async ({ params }: PageProps) => {
               </div>
 
               <div className='mt-6 flex items-center'>
-                <Check
+                <Truck
                   aria-hidden='true'
-                  className='h-5 w-5 flex-shrink-0 text-green-500'
+                  className='h-5 w-5 flex-shrink-0 text-green-700'
                 />
-                <p className='ml-2 text-sm text-muted-foreground'>
-                  Delivery a todo el País
+                <p className='ml-2 text-sm font-semibold text-green-700'>
+                  Delivery a todo el Uruguay
+                </p>
+              </div>
+              <div className='mt-6 flex items-center'>
+                <ShieldCheck
+                  aria-hidden='true'
+                  className='h-5 w-5 flex-shrink-0 text-green-700'
+                />
+                <p className='ml-2 text-sm font-semibold text-green-700'>
+                  Pago seguro con Mercado Pago
                 </p>
               </div>
             </section>
@@ -148,17 +157,6 @@ const Page = async ({ params }: PageProps) => {
               <div className='mt-10'>
                 <AddToCartButton product={product} />
               </div>
-              {/* <div className='mt-6 text-center'>
-                <div className='group inline-flex text-sm text-medium'>
-                  <Shield
-                    aria-hidden='true'
-                    className='mr-2 h-5 w-5 flex-shrink-0 text-gray-400'
-                  />
-                  <span className='text-muted-foreground hover:text-gray-700'>
-                    30 Day Return Guarantee
-                  </span>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
@@ -166,7 +164,7 @@ const Page = async ({ params }: PageProps) => {
 
       <ProductsReel
         user={user}
-        href='/products'
+        href='/product'
         query={{ category: product.category, limit: 4 }}
         title={`Similar ${label}`}
         subtitle={`Aquí tienes ${label} similares a '${product.name}'`}
