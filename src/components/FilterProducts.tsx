@@ -19,7 +19,7 @@ const FilterProducts: React.FC<FilterProductsProps> = ({ onFilterSelect }) => {
   }
 
   return (
-    <div className='flex flex-row text-muted-foreground justify-between space-x-4 mt-10 pt-5 p-4 overflow-x-auto'>
+    <div className='flex flex-row text-muted-foreground justify-between space-x-4 mt-4 pb-10 p-4 overflow-x-auto'>
       {PRODUCT_CATEGORIES.map((category, index) => (
         <p
           key={index}
