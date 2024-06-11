@@ -21,18 +21,18 @@ const ShowOrders = async ({orders} : props) => {
         <ul>
           {orders.map((order) => (
             <li key={order.id} className="bg-gray-50 p-4 mb-4">
-              <div className='flex justify-between'>
-                <h3 className="font-bold">Orden ID: #{order.id}</h3>
-                <span
-                  className={cn('px-2 py-1 rounded-full text-xs font-medium ',  {
-                    'bg-green-100 text-green-600': order._isPaid,
-                    'bg-yellow-100 text-yellow-600': !order._isPaid,
-                  })}
-                >
-                  {order._isPaid ? 'Aprobada' : 'Pendiente'}
-                </span>
-              </div>
-              <ul>
+            <div className="flex flex-wrap justify-between items-center">
+              <h3 className="font-bold truncate">Orden ID: #{order.id}</h3>
+              <span
+                className={cn('px-2 py-1 rounded-full text-xs font-medium ml-2 mt-2', {
+                  'bg-green-100 text-green-600': order._isPaid,
+                  'bg-yellow-100 text-yellow-600': !order._isPaid,
+                })}
+              >
+                {order._isPaid ? 'Aprobada' : 'Pendiente'}
+              </span>
+            </div>
+            <ul>
               {items.map(({ product, quantity }) => {
                   const { image } = product.images[0]
 
