@@ -9,12 +9,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
-import Link from 'next/link'
 import { useAuth } from '@/hooks/use-auth'
+import { useRouter } from 'next/navigation';
 
 const UserAccountNav = ({ user }: { user: User }) => {
   const { signOut } = useAuth()
+  const router = useRouter();
 
+  const handleProfile = () => {
+    router.push('/profile');
+  };
+  
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -41,6 +46,11 @@ const UserAccountNav = ({ user }: { user: User }) => {
 
         <DropdownMenuSeparator />
 
+        <DropdownMenuItem
+          onClick={handleProfile}
+          className='cursor-pointer'>
+         Mi Perfil
+        </DropdownMenuItem>
         <DropdownMenuItem
           onClick={signOut}
           className='cursor-pointer'>

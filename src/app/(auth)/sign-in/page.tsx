@@ -37,7 +37,7 @@ const Page = () => {
   const { mutate: signIn, isLoading } =
     trpc.auth.signIn.useMutation({
       onSuccess: async () => {
-        toast.success('Signed in successfully')
+        toast.success('Iniciaste Session con éxito')
 
         router.refresh()
 
@@ -57,7 +57,7 @@ const Page = () => {
       },
       onError: (err) => {
         if (err.data?.code === 'UNAUTHORIZED') {
-          toast.error('Invalid email or password.')
+          toast.error('Email o contraseña incorrectos.')
         }
       },
     })
@@ -74,7 +74,7 @@ const Page = () => {
       <div className='container relative flex pt-20 flex-col items-center justify-center lg:px-0'>
         <div className='mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]'>
           <div className='flex flex-col items-center space-y-2 text-center'>
-            <Image src="/favicon.ico" alt="logo" width={100} height={100}/>
+            <Image src="/favicon.ico" alt="logo" width={140} height={140} priority/>
             <h1 className='text-2xl font-bold tracking-tight'>
               Inicia sesión en tu {' '}
               cuenta

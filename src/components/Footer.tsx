@@ -44,7 +44,7 @@ const Footer = () => {
                   <p className='mt-2 text-sm text-muted-foreground'>
                    Si te interesa volverte revendedor podrás acceder a increíbles precios mayorista
                    para iniciar tu propio negocio! ponte en contacto para obtener mas información{' '}
-                   <a href="https://api.whatsapp.com/send?phone=59892349023&text=Hola%2C%20vi%20esto%20en%20%20la%20web%20Gemstone.%20Quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer" className='font-medium text-black hover:text-zinc-900'>
+                   <a href="https://api.whatsapp.com/send?phone=59892349023&text=Hola%2C%20tengo%20dudas%20sobre%20%20la%20web%20Gemstone.%20Quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer" className='font-medium text-black hover:text-zinc-900'>
                      Aquí!
                    </a>
                   </p>
@@ -63,15 +63,14 @@ const Footer = () => {
           </div>
 
           <div className='mt-4 flex items-center justify-center md:mt-0'>
-            <div className='flex space-x-5 items-center jsu'>
+            <div className='flex space-x-5 items-center'>
               <LogoFb/>
               <LogoIg/>
-              <LogoWpp/>
               <Link
                 href='/Terminos-y-condiciones.pdf'
                 target="_blank"
                 rel="noopener noreferrer"
-                className='text-sm text-muted-foreground hover:text-gray-600'>
+                className='text-sm text-muted-foreground hover:text-gray-600 md:pr-14'>
                 Términos y Condiciones de uso
               </Link>
             </div>

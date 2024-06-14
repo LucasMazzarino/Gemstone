@@ -8,7 +8,7 @@ import { PRODUCT_CATEGORIES } from '@/config'
 import { useCart } from '@/hooks/use-cart'
 import { cn, formatPrice } from '@/lib/utils'
 import { User } from '@/payload-type'
-import { Check, Loader2, X, HelpCircle } from 'lucide-react'
+import { Check, Loader2, X, HelpCircle, Truck, ShieldCheck } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
@@ -88,6 +88,7 @@ const CartPage = ({ user }: { user: User | null }) => {
                           <Image
                             fill
                             src={image.url}
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             alt='product image'
                             className='h-full w-full rounded-md object-cover object-center sm:h-48 sm:w-48'
                           />
@@ -135,7 +136,7 @@ const CartPage = ({ user }: { user: User | null }) => {
                             Total : {product.wholesalePrice * count}
                             </p>
                             :
-                            <p className='mt-6 w-24 text-lg font-medium text-gray-900'>
+                            <p className='mt-3 w-24 text-lg font-medium text-gray-900'>
                             Total : {product.price * count}
                           </p>                            
                           }
@@ -158,12 +159,24 @@ const CartPage = ({ user }: { user: User | null }) => {
                         </div>
                       </div>
 
-                      <p className='mt-4 flex space-x-2 text-sm text-gray-700'>
-                        <Check className='h-5 w-5 flex-shrink-0 text-green-500' />
-                        <span>
-                          Delivery a todo el país
-                        </span>
-                      </p>
+                      <div className='mt-3 flex items-center'>
+                        <Truck
+                          aria-hidden='true'
+                          className='h-5 w-5 flex-shrink-0 text-green-700'
+                        />
+                        <p className='ml-2 text-sm font-semibold text-green-700'>
+                          Delivery a todo el Uruguay
+                        </p>
+                      </div>
+                      <div className='mt-6 flex items-center'>
+                        <ShieldCheck
+                          aria-hidden='true'
+                          className='h-5 w-5 flex-shrink-0 text-green-700'
+                        />
+                        <p className='ml-2 text-sm font-semibold text-green-700'>
+                          Pago seguro con Mercado Pago
+                        </p>
+                      </div>
                     </div>
                   </li>
                 )
@@ -196,11 +209,13 @@ const CartPage = ({ user }: { user: User | null }) => {
                 <div className="text-sm font-medium text-gray-900 flex flex-col items-end">
                   {isMounted ? (
                     <div className="flex items-center">
-                      Gratis
                       <Tooltip.Provider>
                         <Tooltip.Root>
                           <Tooltip.Trigger asChild>
-                            <HelpCircle className="ml-1" color="blue" size={24} />
+                            <div className="flex items-center cursor-pointer">
+                              Gratis
+                              <HelpCircle className="ml-1" color="blue" size={24} />
+                            </div>
                           </Tooltip.Trigger>
                           <Tooltip.Content
                             side="top"

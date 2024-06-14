@@ -62,7 +62,11 @@ const ShowOrders = async ({orders} : props) => {
                  <div className="bg-gray-100 p-4 mt-auto">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-500">Total: ${order.total}</span>
-                    <span className="text-gray-500">Creada: {new Date(order.createdAt).toISOString().split('T')[0]}</span>
+                    <span className="text-gray-500">Creada: {new Date(order.createdAt).toLocaleDateString('es-ES', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                  })}</span>
                   </div>
                 </div>
               </ul>

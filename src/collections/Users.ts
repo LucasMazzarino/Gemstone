@@ -71,6 +71,7 @@ export const Users: CollectionConfig = {
     {
       name: "department",
       label: "Departamento",
+      required: true,
       type: "select",
       hasMany: false,
       options: [

@@ -21,6 +21,14 @@ export async function middleware(req: NextRequest) {
       `${process.env.NEXT_PUBLIC_SERVER_URL}/`
     )
   }
+  if (
+    !user &&
+    ['/profile'].includes(nextUrl.pathname)
+  ) {
+    return NextResponse.redirect(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/`
+    )
+  }
 
   return NextResponse.next()
 }

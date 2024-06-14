@@ -41,7 +41,7 @@ const orderPage = async () => {
   return (
     <MaxWidthWrapper>
       <div className="bg-white">
-        <div className="mx.auto max-w-2xl px-4 pb-24 pt-16 sm:px-2 lg:max-w-7xl lg:px-8">
+        <div className="max-w-2xl px-4 pb-24 pt-16 sm:px-2 lg:max-w-7xl lg:px-8">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-4">
             Tus ordenes
           </h1>

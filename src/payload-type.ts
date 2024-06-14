@@ -23,29 +23,26 @@ export interface User {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  department?:
-    | (
-        | 'Artigas'
-        | 'Canelones'
-        | 'Cerro Largo'
-        | 'Colonia'
-        | 'Durazno'
-        | 'Flores'
-        | 'Florida'
-        | 'Lavalleja'
-        | 'Maldonado'
-        | 'Montevideo'
-        | 'Paysandú'
-        | 'Río Negro'
-        | 'Rivera'
-        | 'Rocha'
-        | 'Salto'
-        | 'San José'
-        | 'Soriano'
-        | 'Tacuarembó'
-        | 'Treinta y Tres'
-      )
-    | null;
+  department:
+    | 'Artigas'
+    | 'Canelones'
+    | 'Cerro Largo'
+    | 'Colonia'
+    | 'Durazno'
+    | 'Flores'
+    | 'Florida'
+    | 'Lavalleja'
+    | 'Maldonado'
+    | 'Montevideo'
+    | 'Paysandú'
+    | 'Río Negro'
+    | 'Rivera'
+    | 'Rocha'
+    | 'Salto'
+    | 'San José'
+    | 'Soriano'
+    | 'Tacuarembó'
+    | 'Treinta y Tres';
   address: string;
   customerType?: ('customer' | 'Wholesale') | null;
   updatedAt: string;

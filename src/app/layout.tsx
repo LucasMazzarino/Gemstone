@@ -6,12 +6,13 @@ import Navbar from "../components/Navbar"
 import Providers from "@/components/Providers";
 import { Toaster } from "sonner";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Gemstone",
-  description: "developed by Lucas Mazzarino",
+  description: "Tienda de Joyas y Accesorios Online",
 };
 
 export default function RootLayout({
@@ -30,6 +31,7 @@ export default function RootLayout({
           <Navbar />
             <div className="flex-grow flex-1">{children}</div>
             <Footer />
+            <WhatsAppButton />
           </Providers>
         </main>
         <Toaster position="top-center" richColors/>

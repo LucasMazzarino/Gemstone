@@ -109,7 +109,7 @@ export const paymentRouter = router({
             },
           },
         });  
-        return {url: preference.sandbox_init_point?.toString()}
+        return {url: preference.init_point?.toString()}
       } catch(error) {
         return {url: null}
       }

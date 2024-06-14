@@ -65,13 +65,13 @@ const ProductReel = (props: ProductReelProps) => {
 
 
   return (
-    <section className='max-md:pr-14 max-md:pl-14 pt-10 pb-14'>
+    <section className='max-md:pr-5 max-md:pl-5 pt-10 pb-14'>
       <div className='md:flex md:items-center md:justify-between mb-4'>
         <div className='max-w-2xl lg:max-w-4xl lg:px-0'>
           {title ? (
-            <h1 className='text-2xl font-bold text-gray-900 sm:text-3xl'>
+            <h2 className='text-2xl font-extrabold text-gray-900 sm:text-3xl'>
               {title} 
-            </h1>
+            </h2>
           ) : null}
           {subtitle ? (
             <p className='mt-2 text-sm text-muted-foreground'>
@@ -91,7 +91,7 @@ const ProductReel = (props: ProductReelProps) => {
       </div>
       <div className="relative mb-4">
         <div className="mt-6 flex items-center w-full">
-          <div className="w-full grid grid-cols-1 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-3 md:gap-y-10 lg:gap-x-8 lg:grid-cols-4 xl:grid-cols-5">
+          <div className="w-full grid grid-cols-2 gap-x-2 gap-y-5 sm:gap-x-6 md:grid-cols-3 md:gap-y-10 lg:gap-x-8 lg:grid-cols-4 xl:grid-cols-5">
             {filteredProducts.length ? (
               filteredProducts.map((product, i) => (
                 <ProductListing

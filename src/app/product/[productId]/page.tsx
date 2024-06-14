@@ -21,9 +21,9 @@ interface PageProps {
   }
 }
 
-const BREADCRUMBS = [
-  { id: 1, name: 'Home', href: '/' },
-  { id: 2, name: 'Products', href: '/product' },
+const LINKS = [
+  { id: 1, name: 'Inicio', href: '/' },
+  { id: 2, name: 'Productos', href: '/product' },
 ]
 
 const Page = async ({ params }: PageProps) => {
@@ -69,7 +69,7 @@ const Page = async ({ params }: PageProps) => {
           {/* Product Details */}
           <div className='lg:max-w-lg lg:self-end'>
             <ol className='flex items-center space-x-2'>
-              {BREADCRUMBS.map((breadcrumb, i) => (
+              {LINKS.map((breadcrumb, i) => (
                 <li key={breadcrumb.href}>
                   <div className='flex items-center text-sm'>
                     <Link
@@ -77,7 +77,7 @@ const Page = async ({ params }: PageProps) => {
                       className='font-medium text-sm text-muted-foreground hover:text-gray-900'>
                       {breadcrumb.name}
                     </Link>
-                    {i !== BREADCRUMBS.length - 1 ? (
+                    {i !== LINKS.length - 1 ? (
                       <svg
                         viewBox='0 0 20 20'
                         fill='currentColor'
@@ -145,7 +145,7 @@ const Page = async ({ params }: PageProps) => {
           </div>
 
           {/* Product images */}
-          <div className='mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center'>
+          <div className='mt-4 p-4 sm:p-8 sm:pl-0 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center'>
             <div className='aspect-square rounded-lg'>
               <ImageSlider urls={validUrls} />
             </div>

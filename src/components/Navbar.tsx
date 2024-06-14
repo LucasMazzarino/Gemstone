@@ -1,6 +1,5 @@
 import Link from "next/link"
 import MaxWidthWrapper from "./MaxWidthWrapper"
-import NavItems from "./Navitems"
 import { buttonVariants } from "./ui/button"
 import Cart from "./Cart"
 import { getServerSideUser } from "@/lib/payload-utils"
@@ -20,11 +19,11 @@ const Navbar = async () => {
       <header className="relative bg-white">
         <MaxWidthWrapper>
           <div className="border-b border-gray-200">
-            <div className="flex h-16 items-center ml-6">
+            <div className="flex h-16 items-center max-lg:ml-6">
               <MobileNav user={user}/>
               <div className="ml-4 flex lg:ml-0">
                 <Link href='/'>
-                  <Image src="/favicon.ico" alt="icon" width={40} height={40}/>
+                  <Image src="/favicon.ico" alt="icon" width={70} height={70} priority/>
                 </Link>
               </div>
               <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-start lg:space-x-6 lg:ml-6">

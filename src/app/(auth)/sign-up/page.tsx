@@ -26,49 +26,51 @@ const Page = () => {
   })
 
 
-const router = useRouter()
+  const router = useRouter()
 
-const {mutate, isLoading} = 
-  trpc.auth.createPayloadUser.useMutation({
-    onError: (err) => {
-      if(err.data?.code === "CONFLICT") {
-        toast.error("Este email ya esta en uso")
-        return
-      }
-    
-      if(err instanceof ZodError) {
-        toast.error(err.issues[0].message)
-        return
-      }
-      toast.error('Something went wrong')
-    },
-    onSuccess: ({sentoToEmail}) => {
-      toast.success(`Email de verificación enviado ${sentoToEmail}.`)
-      router.push('/')
-    }   
-})
+  const {mutate, isLoading} = 
+    trpc.auth.createPayloadUser.useMutation({
+      onError: (err) => {
+        if(err.data?.code === "CONFLICT") {
+          toast.error("Este email ya esta en uso")
+          return
+        }
+      
+        if(err instanceof ZodError) {
+          toast.error(err.issues[0].message)
+          return
+        }
+        toast.error('Algo salio mal')
+      },
+      onSuccess: ({sentoToEmail}) => {
+        toast.success(`Email de verificación enviado ${sentoToEmail}.`)
+        router.push('/')
+      }   
+  })
 
-const OPTIONS = [
-  "Artigas",
-  "Canelones",
-  "Cerro Largo",
-  "Colonia",
-  "Durazno",
-  "Flores",
-  "Florida",
-  "Lavalleja",
-  "Maldonado",
-  "Montevideo",
-  "Paysandú",
-  "Río Negro",
-  "Rivera",
-  "Rocha",
-  "Salto",
-  "San José",
-  "Soriano",
-  "Tacuarembó",
-  "Treinta y Tres",
-];
+  const OPTIONS = [
+    "Seleccione su departamento",
+    "Artigas",
+    "Canelones",
+    "Cerro Largo",
+    "Colonia",
+    "Durazno",
+    "Flores",
+    "Florida",
+    "Lavalleja",
+    "Maldonado",
+    "Montevideo",
+    "Paysandú",
+    "Río Negro",
+    "Rivera",
+    "Rocha",
+    "Salto",
+    "San José",
+    "Soriano",
+    "Tacuarembó",
+    "Treinta y Tres",
+  ];
+
 
   const onSubmit = ({
     email, 
@@ -88,7 +90,7 @@ const OPTIONS = [
       <div className='container relative flex pt-20 flex-col items-center justify-center lg:px-0'>
         <div className='mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]'>
           <div className='flex flex-col items-center space-y-2 text-center'>
-            <Image src="/favicon.ico" alt="logo" width={100} height={100}/>
+            <Image src="/favicon.ico" alt="logo" width={140} height={140} priority/>
             <h1 className="text-2xl font-bold">
               Crear mi Cuenta
             </h1>
@@ -152,7 +154,7 @@ const OPTIONS = [
                     className={cn({
                       "focus-visible:ring-red-500": errors.phoneNumber,
                     })}
-                      placeholder="099202122"
+                      placeholder="123456789"
                     />
                     {errors?.phoneNumber && (
                       <p className="text-sm text-red-500">{errors.phoneNumber.message}</p>
@@ -162,7 +164,7 @@ const OPTIONS = [
                   <Label htmlFor='department'>Departamento</Label>
                     <select
                       {...register("department")}
-                      className="block w-full py-2 pl-3 pr-10 border-gray-300 rounded-md focus:outline-none sm:text-sm"
+                      className="block w-full py-2 pl-3 pr-10 border border-gray-200 rounded-md focus:outline-none sm:text-sm"
                     >
                       {OPTIONS.map((dep) => (
                         <option key={dep} value={dep}>

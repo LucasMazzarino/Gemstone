@@ -36,7 +36,12 @@ const CartItem = ({ product, count, userType}: CartItemProps) => {
         <div className="flex items-center space-x-4">
           <div className="relative aspect-square h-16 w-16 min-w-fit overflow-hidden rounded">
             {typeof image !== "string" && image.url ? (
-              <Image src={image.url} alt={product.name} fill className="absolute object-cover"/>
+              <Image 
+                src={image.url}
+                alt={product.name} 
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="absolute object-cover"/>
             ) : (
               <div className="flex h-full items-center justify-center bg-secondary">
                 <ImageIcon 
