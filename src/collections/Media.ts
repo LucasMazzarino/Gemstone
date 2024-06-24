@@ -1,5 +1,27 @@
 import { User } from "../payload-type";
 import { Access, CollectionConfig } from "payload/types";
+import { DeleteObjectCommand, S3Client } from "@aws-sdk/client-s3"
+import payload from "payload";
+
+const s3 = new S3Client({
+  region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
+  },
+});
+
+async function deleteFileFromS3(fileKey: string) {
+  const params = {
+    Bucket: process.env.S3_BUCKET_NAME!,
+    Key: fileKey,
+  };
+
+  try {
+    await s3.send(new DeleteObjectCommand(params)); 
+  } catch (err) {
+  }
+}
 
 const isAdminOrHasAccessToImages = (): Access => async ({
   req
@@ -21,8 +43,24 @@ export const Media: CollectionConfig = {
   hooks: {
     beforeChange: [({ req, data }) => {
       return { ...data, user: req.user.id }
-    },
-    ],
+    }],
+    beforeDelete: [async ({ id }) => {
+      try {
+        const mediaToDelete = await payload.findByID({
+          collection: 'media',
+          id,
+        });
+
+        if (mediaToDelete && 'file' in mediaToDelete) {
+          const fileData = mediaToDelete.file as { filename: string };
+          if (fileData && fileData.filename) {
+            await deleteFileFromS3(fileData.filename);
+          }
+        }
+      } catch (error) {
+        console.error(`Error fetching media document with ID ${id}: `, error);
+      }
+    }],
   },
   access: {
     read: async ({req}) => {
@@ -43,26 +81,6 @@ export const Media: CollectionConfig = {
   upload: {
     staticURL: "/media",
     staticDir: "media",
-    imageSizes: [
-      {
-        name: "thumbnail",
-        width: 400,
-        height: 300,
-        position: "center",
-      },
-      {
-        name: "card",
-        width: 768,
-        height: 1024,
-        position: "center",
-      },
-      {
-        name: "tablet",
-        width: 1024,
-        height: undefined,
-        position: "center",
-      },
-    ],
     mimeTypes: ['image/*'],
   },
   fields: [

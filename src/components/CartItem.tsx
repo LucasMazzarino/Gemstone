@@ -16,6 +16,11 @@ const CartItem = ({ product, count, userType}: CartItemProps) => {
 
   const {image} = product.images[0]
 
+  const imageUrl = typeof image === "string" 
+  ? image 
+  : image.url?.replace('http://localhost:3000/media/', 'https://cdn.gemstonuruguay.com/');
+
+
   const subtotal = userType === 'Wholesale' ?
   product.wholesalePrice * count :
   product.price * count
@@ -30,19 +35,22 @@ const CartItem = ({ product, count, userType}: CartItemProps) => {
     ({ value }) => value === product.category
   )?.label
 
+  
+
   return (
     <div className="space-y-3 py-3 border-t-2">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center space-x-4">
           <div className="relative aspect-square h-16 w-16 min-w-fit overflow-hidden rounded">
-            {typeof image !== "string" && image.url ? (
+          {imageUrl ? (
               <Image 
-                src={image.url}
+                src={imageUrl}
                 alt={product.name} 
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="absolute object-cover"/>
-            ) : (
+                className="absolute object-cover"
+              />
+            )  : (
               <div className="flex h-full items-center justify-center bg-secondary">
                 <ImageIcon 
                   aria-hidden="true" 

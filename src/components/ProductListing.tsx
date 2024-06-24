@@ -36,9 +36,10 @@ const ProductListing = ({
   )?.label
 
   const validUrls = product.images
-    .map(({ image }) =>
-      typeof image === 'string' ? image : image.url
-    )
+    .map(({ image }) => {
+      const imageUrl = typeof image === 'string' ? image : image?.url
+      return imageUrl ? imageUrl.replace('http://localhost:3000/media/', 'https://cdn.gemstonuruguay.com/') : ''
+    })
     .filter(Boolean) as string[]
 
   if (isVisible && product) {

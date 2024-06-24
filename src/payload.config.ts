@@ -8,9 +8,23 @@ import dotenv from "dotenv"
 import { Products } from "./collections/Products/Products";
 import { Media } from "./collections/Media";
 import { Orders } from "./collections/Orders";
+import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3';
+import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 
 dotenv.config({
   path: path.resolve(__dirname, "../.env")
+})
+
+const storageAdapter = s3Adapter({
+  config: {
+    endpoint: process.env.S3_ENDPOINT,
+    region: process.env.S3_REGION,
+    credentials: {
+      accessKeyId: process.env.S3_ACCESS_KEY!,
+      secretAccessKey: process.env.S3_SECRET_KEY!,
+    }
+  },
+  bucket: process.env.S3_BUCKET_NAME!,
 })
 
 export default buildConfig({
@@ -25,7 +39,7 @@ export default buildConfig({
     meta: {
       titleSuffix: "- Market",
       favicon: "/favicon.ico",
-      ogImage: "thumbnail.jpg",
+      ogImage: "/favicon.ico",
     },
   },
   rateLimit: {
@@ -38,5 +52,14 @@ export default buildConfig({
   }),
   typescript: {
     outputFile: path.resolve(__dirname, "payload-type.ts"),
-  }
+  },
+  plugins: [
+    cloudStorage({
+        collections: { 
+          'media': {
+            adapter: storageAdapter,
+          },
+        },
+      }),
+    ],
 })

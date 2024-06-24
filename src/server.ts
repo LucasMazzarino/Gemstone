@@ -8,6 +8,7 @@ import { inferAsyncReturnType } from "@trpc/server"
 import nextBuild from "next/dist/build"
 import path from 'path'
 import { parse } from 'url'
+import cors from 'cors';
 
 
 
@@ -52,6 +53,17 @@ const start = async () => {
 
     return
   }
+
+  const allowedOrigins = ['https://gemstonuruguay.com', 'https://www.gemstonuruguay.com'];
+  app.use(cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    }
+  }));
 
   const cartRouter = express.Router()
 

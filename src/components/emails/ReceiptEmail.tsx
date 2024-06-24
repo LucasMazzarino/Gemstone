@@ -120,22 +120,24 @@ export const ReceiptEmail = ({
             <Text style={productsTitle}>Suma de la orden</Text>
           </Section>
           {products.map((product) => {
-            // const { image } = product.images[0]
+            const { image } = product.images[0]
+            const imageUrl = typeof image === "string" 
+            ? image 
+            : image.url?.replace('http://localhost:3000/media/', 'https://cdn.gemstonuruguay.com/');
 
-            return (
-              <Section key={product.id}>
-                {/* <Column style={{ width: '64px' }}>
-                  {typeof image !== 'string' &&
-                  image.url ? (
-                    <Img
-                      src={image.url}
-                      width='64'
-                      height='64'
-                      alt='Product Image'
-                      style={productIcon}
-                    />
-                  ) : null}
-                </Column> */}
+          return (
+            <Section key={product.id}>
+              <Column style={{ width: '64px' }}>
+                {imageUrl ? (
+                  <Img
+                    src={imageUrl}
+                    width='64'
+                    height='64'
+                    alt='Product Image'
+                    style={productIcon}
+                  />
+                ) : null}
+                </Column> 
                 <Column style={{ paddingLeft: '22px' }}>
                   <Text style={productTitle}>
                     {product.name}
