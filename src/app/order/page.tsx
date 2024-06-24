@@ -15,7 +15,7 @@ const orderPage = async () => {
   if (!user) {
     return (
       <div className="flex flex-col items-center justify-center space-y-4">
-        <h2 className="text-center my-3 text-xl font-semibold md:text-3xl">Debes iniciar sesión para ver tus ordenes</h2>
+        <h4 className="text-center my-3 text-xl font-semibold md:text-3xl">Debes iniciar sesión para ver tus ordenes</h4>
         <Image src='https://cdn.gemstonuruguay.com/login-img.png' alt="login" width={1000} height={1000}/> 
         <Link href="/sign-in" className="pb-5">
         <Button variant="secondary">
@@ -42,9 +42,9 @@ const orderPage = async () => {
     <MaxWidthWrapper>
       <div className="bg-white">
         <div className="max-w-2xl px-4 pb-24 pt-16 sm:px-2 lg:max-w-7xl lg:px-8">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-4">
+          <h4 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-4">
             Tus ordenes
-          </h2>
+          </h4>
           {orders.length > 0 ? 
             <ShowOrders orders={orders} /> :
             <div className="flex flex-col items-center justify-center h-full font-semibold">

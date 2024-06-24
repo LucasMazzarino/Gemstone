@@ -31,11 +31,11 @@ const Home = async () => {
         <Image src="https://cdn.gemstonuruguay.com/bge.png" alt="Gemstoneuruguay" width={500} height={500} priority/>
       </div>
       <h1 className="sr-only">Gemstone Uruguay</h1>
-      <h2 className="relative z-20 text-4xl font-sans font-extrabold tracking-tight text-gray-900 md:text-5xl lg:text-6xl h-20" style={{ textShadow: '0 0 20px white' }}>
+      <p className="relative z-20 text-4xl font-sans font-extrabold tracking-tight text-gray-900 md:text-5xl lg:text-6xl h-20" style={{ textShadow: '0 0 20px white' }}>
         Tu Tienda {' '}
         <span className="text-violet-700">de Joyas </span>
         en Uruguay
-      </h2>
+      </p>
       <div className="relative z-20 flex flex-col sm:flex-row sm:pt-5 lg:mt-3 gap-6 mt-8 mb-4">
         <Link href="/product" className={buttonVariants()}>Ver Productos</Link>
       </div>
