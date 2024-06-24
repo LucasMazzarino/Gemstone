@@ -39,9 +39,9 @@ const CartPage = ({ user }: { user: User | null }) => {
     <MaxWidthWrapper >
     <div className="bg-white">
       <div className="mx.auto max-w-2xl px-4 pb-24 pt-16 sm:px-2 lg:max-w-7xl lg:px-8">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        <h3 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
           Carrito de Compras
-        </h1>
+        </h3>
         <div className="mt-12 lg-grid lg:col-12 lg:items-star lg:gap-x-12 xl:gap-x-16">
           <div className={cn("lg:col-span-7", {
             "rounded-lg border-2 border-dashed border-zinc-200 p-12":

@@ -93,9 +93,9 @@ const Page = async ({ params }: PageProps) => {
             </ol>
 
             <div className='mt-4 flex items-center'>
-              <h1 className='text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'>
+              <h2 className='text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'>
                 {product.name}
-              </h1>
+              </h2>
             </div>
             <section className='mt-4'>
               <div className='flex items-center'>

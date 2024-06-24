@@ -42,9 +42,9 @@ const orderPage = async () => {
     <MaxWidthWrapper>
       <div className="bg-white">
         <div className="max-w-2xl px-4 pb-24 pt-16 sm:px-2 lg:max-w-7xl lg:px-8">
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-4">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-4">
             Tus ordenes
-          </h1>
+          </h2>
           {orders.length > 0 ? 
             <ShowOrders orders={orders} /> :
             <div className="flex flex-col items-center justify-center h-full font-semibold">

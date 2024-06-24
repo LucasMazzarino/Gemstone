@@ -54,9 +54,9 @@ const ProductListing = ({
         href={`/product/${product.id}`}>
         <div className='flex flex-col w-full'>
           <ImageSlider urls={validUrls} />
-          <h1 className='mt-4 font-medium text-sm text-gray-700'>
+          <h2 className='mt-4 font-medium text-sm text-gray-700'>
             {product.name}
-          </h1>
+          </h2>
           <p className='mt-1 text-sm text-gray-600'>
             {product.description}
           </p>

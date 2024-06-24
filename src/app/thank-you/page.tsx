@@ -76,9 +76,9 @@ const ThankYouPage = async ({
             <p className='text-sm font-medium text-blue-600'>
               Orden creada con éxitos
             </p>
-            <h1 className='mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl'>
+            <h2 className='mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl'>
               Gracias por tu Orden!
-            </h1>
+            </h2>
             {order._isPaid ? (
               <p className='mt-2 text-base text-muted-foreground'>
                 Su pedido fue procesado y confirmado, los productos
