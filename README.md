@@ -1,40 +1,41 @@
-# Gemstone Uruguay Plataforma E-commerce 
+# Gemstone Uruguay E-commerce Platform
 
-**Este proyecto fue desarrollado para Gemstone Uruguay, una joyería en Uruguay, con el objetivo de crear una plataforma de e-commerce robusta y eficiente. La aplicación se construyó utilizando tecnologías modernas y enfocándose en un rendimiento óptimo y una excelente experiencia de usuario. Uno de los objetivos a cumplir para el desarrollo de este producto era crear la plataforma utilizando 100% de TypeScript por lo que opte usar las siguientes herramientas para cumplir con esta meta.**
+**This project was developed for Gemstone Uruguay, a jewelry store in Uruguay, with the goal of creating a robust and efficient e-commerce platform. The application was built using modern technologies, focusing on optimal performance and an excellent user experience. One of the key objectives for the development of this product was to create the platform using 100% TypeScript. To achieve this, I opted to use the following tools.**
 
-## Tecnologías Utilizadas
+## Technologies Used
 
-- **Next.js 14:** Un framework de React que ofrece renderizado del lado del servidor y generación de sitios estáticos para una mejor performance y SEO.
-- **Payload CMS:** Un CMS de headless construido con Node.js y Express que proporciona una administración de contenido fácil y potente.
-- **tRPC:** Un framework para crear APIs typesafe con TypeScript sin necesidad de escribir código adicional.
+- **Next.js 14:** A React framework that offers server-side rendering and static site generation for better performance and SEO.
+- **Payload CMS:** A headless CMS built with Node.js and Express that provides easy and powerful content management
+- **tRPC:**A framework for creating typesafe APIs with TypeScript without needing to write additional code.
 - **[TypeScript](https://www.typescriptlang.org/)**
 
-## Características del Proyecto
+## Project Features
 
 ### 1. **E-commerce Completo**
-- **Gestión de Productos:** Administrar productos, categorías, y stock desde el CMS de Payload.**
-- **Carrito de Compras:** Implementación de un carrito de compras funcional con capacidad para ajustar cantidades y eliminar productos.
-- **Pasarela de Pago:** Integración con Mercado Pago para procesar pagos de manera segura y eficiente.
-- **Historial de Pedidos:** Los usuarios pueden ver su historial de pedidos y detalles de cada compra.
+- **Product Management:**Manage products, categories, and stock from the Payload CMS.**
+- **Shopping Cart:** Implementation of a functional shopping cart with the ability to adjust quantities and remove products.
+- **Payment Gateway:** Integration with Mercado Pago to process payments securely and efficiently.
+- **Historial de Pedidos:** Users can view their order history and details of each purchase.
 
 ### 2. **Frontend Moderno**
-- **SSR y SSG:** Renderizado del lado del servidor y generación de sitios estáticos para un rendimiento óptimo y mejor SEO.
-- **Interfaz de Usuario Atractiva:** Uso de componentes de React y diseño responsivo para una experiencia de usuario fluida en todos los dispositivos.
-- **Manejo de Imágenes:** Las imágenes se almacenan y sirven desde un bucket de Cloudflare R2, garantizando rapidez y fiabilidad.
+- **SSR and SSG:** Server-side rendering and static site generation for optimal performance and improved SEO.
+- **Attractive User Interface:** Use of React components and responsive design for a smooth user experience on all devices.
+- **Image Handling:** Images are stored and served from a Cloudflare R2 bucket, ensuring speed and reliability.
 
 ### 3. **Backend Sólido**
-- **API Typesafe:** Uso de tRPC para crear APIs typesafe, lo que reduce errores y mejora la productividad del desarrollo.
-- **Gestión de Usuarios:** Sistema de autenticación y autorización robusto para gestionar diferentes tipos de usuarios (cliente y cliente mayorista).
+- **API Typesafe:**Use of tRPC to create typesafe APIs, reducing errors and improving development productivity.
+- **User Management:**Robust authentication and authorization system to manage different types of users (customer and wholesale customer).
 
-### 4. **Experiencia de Usuario Mejorada**
-- **Notificaciones por Email: Envío de emails de confirmación y actualización de estado de pedidos.**
-- **Optimización para SEO: Uso de técnicas de SEO avanzadas para mejorar la visibilidad en motores de búsqueda.
+### 4. **Enhanced User Experience**
+- **Email Notifications:** Sending confirmation emails and order status updates.
+- **SEO Optimization:**Use of advanced SEO techniques to improve search engine visibility.
 
-## Implementación de la Pasarela de Pago
+## Payment Gateway Implementation
+  
+**Mercado Pago was used for payment gateway integration. Key features include:**
+- **Secure Payments:** Processing payments with high security standards.
+- **Various Payment Methods:** Acceptance of multiple payment methods including credit cards, debit cards, and bank transfers.
+- **Payment Notifications:** Implementation of Webhooks to receive real-time notifications about payment statuses.
 
-- **Se utilizó Mercado Pago para la integración de la pasarela de pagos. Algunas características clave incluyen:**
-- **Pagos Seguros:** Procesamiento de pagos con altos estándares de seguridad.
-- **Diversos Métodos de Pago:** Aceptación de múltiples métodos de pago incluyendo tarjetas de crédito, débito y transferencias bancarias.
-- **Notificaciones de Pago:** Implementación de Webhooks para recibir notificaciones en tiempo real sobre el estado de los pagos.
-
+You can visit the website at https://gemstonuruguay.com
 
